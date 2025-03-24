@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ethers } from "ethers"; // ✅ Fixed import
+import { ethers } from "ethers";
 import "./App.css";
 
 const CONTRACT_ADDRESS = "0xdD9fD03352611CFEADbF40b769012F6Bc634DD4D";
@@ -16,10 +16,11 @@ const METRICS = [
 
 function App() {
   const [data, setData] = useState({});
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   const fetchSupplies = async () => {
     try {
-      const provider = new ethers.JsonRpcProvider("https://mainnet.base.org"); // ✅ Fixed usage
+      const provider = new ethers.JsonRpcProvider("https://mainnet.base.org");
       const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
 
       const updated = {};
@@ -29,6 +30,7 @@ function App() {
       }
 
       setData(updated);
+      setLastUpdated(new Date().toLocaleString());
     } catch (err) {
       console.error("Failed to fetch metrics:", err);
     }
@@ -42,7 +44,6 @@ function App() {
 
   return (
     <div className="dashboard">
-      <h1>📊 Linkoln Achievements</h1>
       <div className="cards">
         {METRICS.map(({ id, label }) => (
           <div key={id} className="card">
@@ -51,6 +52,9 @@ function App() {
           </div>
         ))}
       </div>
+      {lastUpdated && (
+        <div className="timestamp">Last updated: {lastUpdated}</div>
+      )}
     </div>
   );
 }
