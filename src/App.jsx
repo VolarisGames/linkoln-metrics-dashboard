@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { JsonRpcProvider } from "ethers";
+import { ethers } from "ethers"; // ✅ Fixed import
 import "./App.css";
 
 const CONTRACT_ADDRESS = "0xdD9fD03352611CFEADbF40b769012F6Bc634DD4D";
@@ -19,7 +19,7 @@ function App() {
 
   const fetchSupplies = async () => {
     try {
-      const provider = new ethers.JsonRpcProvider("https://mainnet.base.org");
+      const provider = new ethers.JsonRpcProvider("https://mainnet.base.org"); // ✅ Fixed usage
       const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
 
       const updated = {};
