@@ -14,22 +14,23 @@ body {
 .dashboard {
   text-align: center;
   padding: 2rem;
+  width: 100%;
 }
 
 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
   gap: 1.5rem;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-/* ✅ Responsive card layout */
+/* CARD STYLING */
 .card {
   background: #1e1e30;
   border-radius: 12px;
   padding: 1.5rem 2rem;
-  flex: 1 1 220px;
-  max-width: 320px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
 }
 
@@ -39,7 +40,7 @@ body {
 }
 
 .value {
-  font-size: 2rem;
+  font-size: 2.5rem; /* ✅ Bigger */
   margin-top: 0.5rem;
   font-weight: bold;
   color: #ffa500;
@@ -50,4 +51,24 @@ body {
   margin-top: 2rem;
   font-size: 0.875rem;
   color: #666;
+  text-align: center;
+}
+
+/* ✅ Responsive adjustments */
+@media (min-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }
