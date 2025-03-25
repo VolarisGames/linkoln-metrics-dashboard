@@ -18,17 +18,18 @@ body {
 
 .cards {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 2rem;
+  gap: 1.5rem;
 }
 
+/* ✅ Responsive card layout */
 .card {
   background: #1e1e30;
   border-radius: 12px;
   padding: 1.5rem 2rem;
-  min-width: 220px;
+  flex: 1 1 220px;
+  max-width: 320px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
 }
 
@@ -42,15 +43,11 @@ body {
   margin-top: 0.5rem;
   font-weight: bold;
   color: #ffa500;
+  transition: all 0.3s ease-in-out;
 }
 
 .timestamp {
   margin-top: 2rem;
   font-size: 0.875rem;
   color: #666;
-}
-
-/* Optional: Add transition effect */
-.value {
-  transition: all 0.3s ease-in-out;
 }
